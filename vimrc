@@ -13,6 +13,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'zeis/vim-kolor'
 
 " C++ stuff
 Bundle 'rhysd/vim-clang-format'
@@ -44,7 +45,7 @@ filetype plugin indent on     " required!
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
 
-colorscheme default
+colorscheme kolor
 
 " Tabs and spaces stuff
 
@@ -65,3 +66,6 @@ set smarttab
 
 " always uses spaces instead of tab characters
 set expandtab
+
+" Remove menubar of gvim
+set guioptions-=m
