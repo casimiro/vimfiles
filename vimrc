@@ -65,3 +65,7 @@ set smarttab
 
 " always uses spaces instead of tab characters
 set expandtab
+
+" Enahncing C++ 11 highlight support
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
