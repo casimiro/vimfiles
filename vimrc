@@ -21,6 +21,9 @@ Bundle 'vhdirk/vim-cmake'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'Mizuchi/STL-Syntax'
 
+" LaTeX stuff
+Bundle 'LaTeX-Box-Team/LaTeX-Box'
+
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'FuzzyFinder'
