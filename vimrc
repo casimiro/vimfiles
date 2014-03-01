@@ -69,3 +69,7 @@ set expandtab
 
 " Remove menubar of gvim
 set guioptions-=m
+
+" Enahncing C++ 11 highlight support
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
