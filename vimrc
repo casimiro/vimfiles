@@ -47,6 +47,10 @@ filetype plugin indent on     " required!
 " NerdTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
+" Tab navigation usng tab key
+silent! nmap <silent> <Tab> :tabn<CR>
+silent! nmap <silent> <S-Tab> :tabp<CR>
+
 syntax enable 
 colorscheme kolor
 
