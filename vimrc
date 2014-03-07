@@ -15,11 +15,16 @@ Bundle 'flazz/vim-colorschemes'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'zeis/vim-kolor'
 
+" Snippets
+Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
+
 " C++ stuff
 Bundle 'rhysd/vim-clang-format'
 Bundle 'vhdirk/vim-cmake'
 Bundle 'vim-jp/cpp-vim'
 Bundle 'Mizuchi/STL-Syntax'
+Bundle 'peterhoeg/vim-qml'
 
 " LaTeX stuff
 Bundle 'LaTeX-Box-Team/LaTeX-Box'
@@ -34,19 +39,35 @@ Bundle 'git://git.wincent.com/command-t.git'
 " ...
 
 filetype plugin indent on     " required!
-"
-" Brief help
-" :BundleList          - list configured bundles
-" :BundleInstall(!)    - install (update) bundles
-" :BundleSearch(!) foo - search (or refresh cache first) for foo
-" :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-"
-" see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
 
 " NerdTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
 
+" Tab navigation usng tab key
+silent! nmap <silent> <Tab> :tabn<CR>
+silent! nmap <silent> <S-Tab> :tabp<CR>
+
+" Snippets
+function! g:UltiSnips_Complete()
+    call UltiSnips#ExpandSnippet()
+    if g:ulti_expand_res == 0
+        if pumvisible()
+            return "\<C-n>"
+        else
+            call UltiSnips#JumpForwards()
+            if g:ulti_jump_forwards_res == 0
+               return "\<TAB>"
+            endif
+        endif
+    endif
+    return ""
+endfunction
+
+au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsListSnippets="<c-e>"
+
+" Syntax highlight
 syntax enable 
 colorscheme kolor
 
