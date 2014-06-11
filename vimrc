@@ -12,8 +12,8 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdtree'
 Bundle 'flazz/vim-colorschemes'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'zeis/vim-kolor'
+Bundle 'Shougo/neocomplete'
 
 " Snippets
 Bundle 'SirVer/ultisnips'
@@ -108,3 +108,6 @@ if has("gui_running")
         set guifont=Consolas:h11:cANSI
     endif
 endif
+
+" Neocomplete stuff
+let g:neocomplete#enable_at_startup = 1
