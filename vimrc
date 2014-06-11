@@ -1,44 +1,46 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " General stuff
-Bundle 'tpope/vim-fugitive'
-Bundle 'scrooloose/nerdtree'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'zeis/vim-kolor'
-Bundle 'Shougo/neocomplete'
+Plugin 'tpope/vim-fugitive'
+Plugin 'scrooloose/nerdtree'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'zeis/vim-kolor'
+Plugin 'Shougo/neocomplete'
 
 " Snippets
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 
 " C++ stuff
-Bundle 'rhysd/vim-clang-format'
-Bundle 'vhdirk/vim-cmake'
-Bundle 'vim-jp/cpp-vim'
-Bundle 'Mizuchi/STL-Syntax'
-Bundle 'peterhoeg/vim-qml'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'vhdirk/vim-cmake'
+Plugin 'vim-jp/cpp-vim'
+Plugin 'Mizuchi/STL-Syntax'
+Plugin 'peterhoeg/vim-qml'
 
 " LaTeX stuff
-Bundle 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 " vim-scripts repos
-Bundle 'L9'
-Bundle 'FuzzyFinder'
+Plugin 'L9'
+Plugin 'FuzzyFinder'
 " non-GitHub repos
-Bundle 'git://git.wincent.com/command-t.git'
+Plugin 'git://git.wincent.com/command-t.git'
 " Git repos on your local machine (i.e. when working on your own plugin)
 " Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
 
-filetype plugin indent on     " required!
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 " NerdTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
