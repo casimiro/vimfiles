@@ -101,7 +101,7 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 " Setting font among systems
 if has("gui_running")
     if has("gui_gtk2")
-        set guifont=Inconsolata\ 12
+        set guifont=Inconsolata\ 10
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h13
     elseif has("gui_win32")
