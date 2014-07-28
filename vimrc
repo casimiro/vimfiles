@@ -33,7 +33,7 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 Plugin 'L9'
 Plugin 'FuzzyFinder'
 " non-GitHub repos
-Plugin 'git://git.wincent.com/command-t.git'
+Plugin 'wincent/Command-T' 
 " Git repos on your local machine (i.e. when working on your own plugin)
 " Bundle 'file:///Users/gmarik/path/to/plugin'
 " ...
