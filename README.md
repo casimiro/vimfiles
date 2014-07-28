@@ -16,5 +16,5 @@ Like this: `echo "source ~/.vim/vimrc" > ~/.vimrc`
 
 4. Install all plugins by running:
 `vim +PluginInstall +qall`
-
+You can ignore any warning vim shows up at start up.
 
