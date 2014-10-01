@@ -15,6 +15,10 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'zeis/vim-kolor'
 Plugin 'Shougo/neocomplete'
 
+" Ctags (for code navigation)
+Plugin 'xolox/vim-easytags'
+Plugin 'vim-misc'
+
 " Snippets
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
