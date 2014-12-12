@@ -7,17 +7,24 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required! 
 Plugin 'gmarik/Vundle.git'
+Plugin 'gmarik/Vundle.vim'
 
 " General stuff
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'zeis/vim-kolor'
-Plugin 'Shougo/neocomplete'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'ntpeters/vim-better-whitespace'
 
 " Ctags (for code navigation)
 Plugin 'xolox/vim-easytags'
 Plugin 'vim-misc'
+
+
+" Ruby
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'vim-ruby/vim-ruby'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -76,9 +83,9 @@ let g:UltiSnipsListSnippets="<c-e>"
 " Syntax highlight
 syntax enable 
 colorscheme kolor
+set number
 
 " Tabs and spaces stuff
-
 set ts=4
 
 " size of a hard tabstop
@@ -117,3 +124,12 @@ endif
 
 " Neocomplete stuff
 let g:neocomplete#enable_at_startup = 1
+
+
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+let g:rspec_command = "bundle exec rspec --drb {spec}"
