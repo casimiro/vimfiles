@@ -135,8 +135,6 @@ map <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_command = "bundle exec rspec --drb {spec}"
 
-let g:airline_powerline_fonts = 1
-
 set backspace=indent,eol,start
 
 " Vim airline
