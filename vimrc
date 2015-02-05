@@ -16,6 +16,7 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'zeis/vim-kolor'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'bling/vim-airline'
 
 " Ctags (for code navigation)
 Plugin 'xolox/vim-easytags'
@@ -133,3 +134,11 @@ map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
 let g:rspec_command = "bundle exec rspec --drb {spec}"
+
+let g:airline_powerline_fonts = 1
+
+set backspace=indent,eol,start
+
+" Vim airline
+set laststatus=2
+let g:airline_powerline_fonts = 1
