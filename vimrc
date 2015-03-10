@@ -148,10 +148,14 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
-let g:rspec_command = "bundle exec rspec --drb {spec}"
+let g:rspec_command = "!bundle exec rspec {spec} --color"
 
 set backspace=indent,eol,start
 
 " Vim airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#branch#enabled     = 1
+let g:airline#extensions#syntastic#enabled  = 1
+let g:airline#extensions#tabline#enabled = 1
+set guifont=Inconsolata\ 11
