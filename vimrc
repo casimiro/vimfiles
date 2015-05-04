@@ -5,7 +5,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/Vundle.git'
 Plugin 'gmarik/Vundle.vim'
 
@@ -45,11 +45,12 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
+
 " non-GitHub repos
-Plugin 'wincent/Command-T' 
-" Git repos on your local machine (i.e. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-" ...
+Plugin 'wincent/Command-T'
+
+" Statistics by wakatime
+Plugin 'wakatime/vim-wakatime'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,7 +84,7 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsListSnippets="<c-e>"
 
 " Syntax highlight
-syntax enable 
+syntax enable
 colorscheme kolor
 set number
 
@@ -108,6 +109,9 @@ set expandtab
 
 " Remove menubar of gvim
 set guioptions-=m
+
+" Colour column to indicate 100 columns
+set colorcolumn=100
 
 " Enahncing C++ 11 highlight support
 let g:syntastic_cpp_compiler = 'clang++'
