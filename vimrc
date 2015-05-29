@@ -32,12 +32,15 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-" C++ stuff
+" C++
 Plugin 'rhysd/vim-clang-format'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'vim-jp/cpp-vim'
 Plugin 'Mizuchi/STL-Syntax'
 Plugin 'peterhoeg/vim-qml'
+
+" Python
+Plugin 'nvie/vim-flake8'
 
 " LaTeX stuff
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -163,3 +166,12 @@ let g:airline#extensions#branch#enabled     = 1
 let g:airline#extensions#syntastic#enabled  = 1
 let g:airline#extensions#tabline#enabled = 1
 set guifont=Inconsolata\ 11
+
+" Habit breaking
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" PEP8 checking for Python files
+autocmd BufWritePost *.py call Flake8()
