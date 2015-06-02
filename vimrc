@@ -155,7 +155,7 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
-let g:rspec_command = "!bundle exec rspec {spec} --color"
+let g:rspec_command = "! docker exec -t magnetis_web_1 bin/rspec --color {spec}"
 
 set backspace=indent,eol,start
 
@@ -175,3 +175,11 @@ noremap <Right> <NOP>
 
 " PEP8 checking for Python files
 autocmd BufWritePost *.py call Flake8()
+
+" Gnome terminal
+set t_Co=256
+
+" Loading local vimrc files (thanks, @philss)
+if filereadable(glob("./.vimrc.local"))
+    source ./.vimrc.local
+endif
