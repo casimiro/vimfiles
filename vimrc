@@ -10,14 +10,15 @@ Plugin 'gmarik/Vundle.git'
 Plugin 'gmarik/Vundle.vim'
 
 " General stuff
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'zeis/vim-kolor'
+" Plugin 'zeis/vim-kolor'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'bling/vim-airline'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'chriskempson/base16-vim'
 
 " Ctags (for code navigation)
 Plugin 'xolox/vim-easytags'
@@ -27,6 +28,7 @@ Plugin 'vim-misc'
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-rails'
 
 " Snippets
 Plugin 'SirVer/ultisnips'
@@ -40,6 +42,7 @@ Plugin 'Mizuchi/STL-Syntax'
 Plugin 'peterhoeg/vim-qml'
 
 " Python
+Plugin 'klen/python-mode'
 Plugin 'nvie/vim-flake8'
 
 " LaTeX stuff
@@ -88,7 +91,6 @@ let g:UltiSnipsListSnippets="<c-e>"
 
 " Syntax highlight
 syntax enable
-colorscheme kolor
 set number
 
 " Tabs and spaces stuff
@@ -155,7 +157,7 @@ map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
 map <Leader>a :call RunAllSpecs()<CR>
 
-let g:rspec_command = "! docker exec -t magnetis_web_1 bin/rspec --color {spec}"
+let g:rspec_command = "! docker exec -it magnetis_web_1 bundle exec rspec --color {spec}"
 
 set backspace=indent,eol,start
 
@@ -177,9 +179,21 @@ noremap <Right> <NOP>
 autocmd BufWritePost *.py call Flake8()
 
 " Gnome terminal
+let base16colorspace=256
+set background=dark
 set t_Co=256
+colorscheme base16-eighties
 
 " Loading local vimrc files (thanks, @philss)
 if filereadable(glob("./.vimrc.local"))
     source ./.vimrc.local
 endif
+
+" Transparent background
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
+
+" Running python file easily
+autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test' shellescape(@%, 1)<cr>
+
+set nofoldenable
