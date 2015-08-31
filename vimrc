@@ -197,3 +197,6 @@ highlight NonText ctermbg=none
 autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test' shellescape(@%, 1)<cr>
 
 set nofoldenable
+
+" telling NerdTree to ignore some files
+let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__']
