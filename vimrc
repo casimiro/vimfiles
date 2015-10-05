@@ -184,19 +184,25 @@ set background=dark
 set t_Co=256
 colorscheme base16-eighties
 
-" Loading local vimrc files (thanks, @philss)
-if filereadable(glob("./.vimrc.local"))
-    source ./.vimrc.local
-endif
-
 " Transparent background
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
 
-" Running python file easily
+" Running python tests easily
 autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test' shellescape(@%, 1)<cr>
 
 set nofoldenable
 
 " telling NerdTree to ignore some files
 let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__']
+
+" I don't want pymode to auto complete my stuff.
+let g:pymode_rope_complete_on_dot = 0
+
+" This way auto complete options are shown in menu rather than a new buffer
+set completeopt=menu
+
+" Loading local vimrc files (thanks, @philss)
+if filereadable(glob("./.vimrc.local"))
+    source ./.vimrc.local
+endif
