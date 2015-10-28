@@ -180,16 +180,17 @@ autocmd BufWritePost *.py call Flake8()
 
 " Gnome terminal
 let base16colorspace=256
-set background=dark
+" set background=dark
 set t_Co=256
-colorscheme base16-eighties
+" colorscheme base16-eighties
 
 " Transparent background
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
 
 " Running python tests easily
-autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test' shellescape(@%, 1)<cr>
+autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test -v -s' shellescape(@%, 1)<cr>
+autocmd FileType python nnoremap <buffer> <leader>g :exec '!py.test -v -s --pdb' shellescape(@%, 1)<cr>
 
 set nofoldenable
 
