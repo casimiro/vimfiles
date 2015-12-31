@@ -20,8 +20,6 @@ Plugin 'bling/vim-airline'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'chriskempson/base16-vim'
 
-" Ctags (for code navigation)
-Plugin 'xolox/vim-easytags'
 Plugin 'vim-misc'
 
 
@@ -182,7 +180,7 @@ autocmd BufWritePost *.py call Flake8()
 let base16colorspace=256
 " set background=dark
 set t_Co=256
-" colorscheme base16-eighties
+colorscheme base16-solarized
 
 " Transparent background
 hi Normal ctermbg=none
