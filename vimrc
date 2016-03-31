@@ -40,7 +40,7 @@ Plugin 'Mizuchi/STL-Syntax'
 Plugin 'peterhoeg/vim-qml'
 
 " Python
-Plugin 'klen/python-mode'
+" Plugin 'klen/python-mode'
 Plugin 'nvie/vim-flake8'
 
 " LaTeX stuff
