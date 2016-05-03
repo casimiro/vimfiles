@@ -16,7 +16,7 @@ Plugin 'flazz/vim-colorschemes'
 " Plugin 'zeis/vim-kolor'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'chriskempson/base16-vim'
 
