@@ -176,12 +176,6 @@ noremap <Right> <NOP>
 " PEP8 checking for Python files
 autocmd BufWritePost *.py call Flake8()
 
-" Gnome terminal
-let base16colorspace=256
-" set background=dark
-set t_Co=256
-colorscheme base16-solarized
-
 " Transparent background
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
