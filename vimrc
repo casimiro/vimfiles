@@ -4,24 +4,18 @@ filetype off                  " required!
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
 Plugin 'gmarik/Vundle.git'
 Plugin 'gmarik/Vundle.vim'
 
 " General stuff
-" Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'flazz/vim-colorschemes'
-" Plugin 'zeis/vim-kolor'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'chriskempson/base16-vim'
-
+Plugin 'Shougo/deoplete.nvim'
 Plugin 'vim-misc'
-
+Plugin 'justinmk/vim-syntax-extra'
 
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
@@ -29,7 +23,6 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'tpope/vim-rails'
 
 " Snippets
-Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
 " C++
@@ -40,8 +33,11 @@ Plugin 'Mizuchi/STL-Syntax'
 Plugin 'peterhoeg/vim-qml'
 
 " Python
-" Plugin 'klen/python-mode'
 Plugin 'nvie/vim-flake8'
+
+" JS
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " LaTeX stuff
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
@@ -83,10 +79,6 @@ function! g:UltiSnips_Complete()
     return ""
 endfunction
 
-au BufEnter * exec "inoremap <silent> " . g:UltiSnipsExpandTrigger . " <C-R>=g:UltiSnips_Complete()<cr>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsListSnippets="<c-e>"
-
 " Syntax highlight
 syntax enable
 set number
@@ -119,6 +111,10 @@ set colorcolumn=100
 " Enahncing C++ 11 highlight support
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+
+" Enabling JSX highlight
+let g:jsx_ext_required = 0
+
 
 " Setting font among systems
 if has("gui_running")
@@ -173,6 +169,11 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" Change cursor according to mode when using Konsole
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
 " PEP8 checking for Python files
 autocmd BufWritePost *.py call Flake8()
 
@@ -199,3 +200,10 @@ set completeopt=menu
 if filereadable(glob("./.vimrc.local"))
     source ./.vimrc.local
 endif
+
+let g:deoplete#enable_at_startup = 1
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
