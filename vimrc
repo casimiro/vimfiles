@@ -13,9 +13,10 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
-Plugin 'Shougo/deoplete.nvim'
 Plugin 'vim-misc'
 Plugin 'justinmk/vim-syntax-extra'
+Plugin 'noah/vim256-color'
+Plugin 'morhetz/gruvbox'
 
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
@@ -169,11 +170,6 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Change cursor according to mode when using Konsole
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
 " PEP8 checking for Python files
 autocmd BufWritePost *.py call Flake8()
 
@@ -201,9 +197,9 @@ if filereadable(glob("./.vimrc.local"))
     source ./.vimrc.local
 endif
 
-let g:deoplete#enable_at_startup = 1
+set t_Co=256
+" colorscheme gruvbox
+" set background=dark
 
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let &t_SI = "\<Esc>[6 q"
+let &t_EI = "\<Esc>[2 q"
