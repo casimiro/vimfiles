@@ -17,6 +17,7 @@ Plugin 'vim-misc'
 Plugin 'justinmk/vim-syntax-extra'
 Plugin 'noah/vim256-color'
 Plugin 'morhetz/gruvbox'
+Plugin 'vim-airline/vim-airline-themes'
 
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
@@ -203,3 +204,5 @@ set t_Co=256
 
 let &t_SI = "\<Esc>[6 q"
 let &t_EI = "\<Esc>[2 q"
+
+let g:airline_theme='solarized'
