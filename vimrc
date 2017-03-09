@@ -9,13 +9,13 @@ Plugin 'gmarik/Vundle.vim'
 
 " General stuff
 Plugin 'scrooloose/nerdtree'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
-Plugin 'Shougo/deoplete.nvim'
 Plugin 'vim-misc'
 Plugin 'justinmk/vim-syntax-extra'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'morhetz/gruvbox'
 
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
@@ -45,12 +45,6 @@ Plugin 'LaTeX-Box-Team/LaTeX-Box'
 " vim-scripts repos
 Plugin 'L9'
 Plugin 'FuzzyFinder'
-
-" non-GitHub repos
-Plugin 'wincent/Command-T'
-
-" Statistics by wakatime
-Plugin 'wakatime/vim-wakatime'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -188,7 +182,7 @@ autocmd FileType python nnoremap <buffer> <leader>g :exec '!py.test -v -s --pdb'
 set nofoldenable
 
 " telling NerdTree to ignore some files
-let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__']
+let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__', '^tmp', '^aux']
 
 " I don't want pymode to auto complete my stuff.
 let g:pymode_rope_complete_on_dot = 0
@@ -206,4 +200,7 @@ let g:deoplete#enable_at_startup = 1
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+colorscheme gruvbox 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=light   " Setting light mode
