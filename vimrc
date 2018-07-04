@@ -14,8 +14,10 @@ Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-misc'
 Plugin 'justinmk/vim-syntax-extra'
-Plugin 'Shougo/deoplete.nvim'
 Plugin 'morhetz/gruvbox'
+Plugin 'chriskempson/base16-vim'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Shougo/denite.nvim'
 
 " Ruby
 Plugin 'thoughtbot/vim-rspec'
@@ -52,6 +54,9 @@ filetype plugin indent on    " required
 
 " NerdTree
 silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+
+" FuzzyFinder
+silent! nmap <silent> <Leader>f :Denite file buffer<CR>
 
 " Tab navigation usng tab key
 silent! nmap <silent> <Tab> :tabn<CR>
@@ -187,20 +192,25 @@ let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__', '^tmp', '^aux']
 " I don't want pymode to auto complete my stuff.
 let g:pymode_rope_complete_on_dot = 0
 
-" This way auto complete options are shown in menu rather than a new buffer
-set completeopt=menu
-
 " Loading local vimrc files (thanks, @philss)
 if filereadable(glob("./.vimrc.local"))
     source ./.vimrc.local
 endif
 
-let g:deoplete#enable_at_startup = 1
-
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-
-colorscheme gruvbox 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+let g:airline_theme='base16_atelierforest'
 set background=light   " Setting light mode
+
+
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+
+if executable('ag')
+    " Use ag (the silver searcher)
+    " https://github.com/ggreer/the_silver_searcher
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts =
+                \ '-i --line-numbers --nocolor ' .
+                \ '--nogroup --hidden --ignore ' .
+                \ '''.hg'' --ignore ''.svn'' --ignore' .
+                \ ' ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+endif
