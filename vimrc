@@ -1,5 +1,7 @@
 set nocompatible              " be iMproved
 filetype off                  " required!
+set path+=**
+set wildmenu
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -9,30 +11,31 @@ Plugin 'gmarik/Vundle.vim'
 
 " General stuff
 Plugin 'scrooloose/nerdtree'
-Plugin 'terryma/vim-multiple-cursors'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mg979/vim-visual-multi', {'branch': 'master'}
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-misc'
 Plugin 'justinmk/vim-syntax-extra'
-Plugin 'morhetz/gruvbox'
 Plugin 'chriskempson/base16-vim'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'Shougo/denite.nvim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'majutsushi/tagbar'
+Plugin 'sheerun/vim-polyglot'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'zivyangll/git-blame.vim'
+Plugin 'wakatime/vim-wakatime'
 
-" Ruby
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
-
-" Snippets
-Plugin 'honza/vim-snippets'
+" Rust
+Plugin 'rust-lang/rust.vim'
+Plugin 'racer-rust/vim-racer'
 
 " C++
 Plugin 'rhysd/vim-clang-format'
 Plugin 'vhdirk/vim-cmake'
 Plugin 'vim-jp/cpp-vim'
 Plugin 'Mizuchi/STL-Syntax'
-Plugin 'peterhoeg/vim-qml'
+Plugin 'cstrahan/vim-capnp'
 
 " Python
 Plugin 'nvie/vim-flake8'
@@ -44,76 +47,39 @@ Plugin 'mxw/vim-jsx'
 " LaTeX stuff
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
-" vim-scripts repos
-Plugin 'L9'
-Plugin 'FuzzyFinder'
+" Lua
+Plugin 'tbastos/vim-lua'
+
+" DevOPS
+Plugin 'towolf/vim-helm'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+set rtp+=~/.fzf
+
 " NerdTree
-silent! nmap <silent> <Leader>p :NERDTreeToggle<CR>
+silent! nmap <silent> <Leader>p <plug>NERDTreeTabsToggle<CR>
 
 " FuzzyFinder
-silent! nmap <silent> <Leader>f :Denite file buffer<CR>
+silent! nmap <silent> <Leader>f :FZF<CR>
 
-" Tab navigation usng tab key
-silent! nmap <silent> <Tab> :tabn<CR>
-silent! nmap <silent> <S-Tab> :tabp<CR>
-
-" Snippets
-function! g:UltiSnips_Complete()
-    call UltiSnips#ExpandSnippet()
-    if g:ulti_expand_res == 0
-        if pumvisible()
-            return "\<C-n>"
-        else
-            call UltiSnips#JumpForwards()
-            if g:ulti_jump_forwards_res == 0
-               return "\<TAB>"
-            endif
-        endif
-    endif
-    return ""
-endfunction
+" buffer navigation usng tab key
+silent! nmap <silent> <Tab> :bn<CR>
+silent! nmap <silent> <S-Tab> :bp<CR>
 
 " Syntax highlight
-syntax enable
+let python_highlight_all=1
+syntax on
 set number
-
-" Tabs and spaces stuff
-set ts=4
-
-" size of a hard tabstop
-set tabstop=4
-
-" size of an "indent"
-set shiftwidth=4
-
-" a combination of spaces and tabs are used to simulate tab stops at a width
-" other than the (hard)tabstop
-set softtabstop=4
 
 " make "tab" insert indents instead of tabs at the beginning of a line
 set smarttab
 
 " always uses spaces instead of tab characters
 set expandtab
-
-" Remove menubar of gvim
-set guioptions-=m
-
-" Colour column to indicate 100 columns
-set colorcolumn=100
-
-" Enahncing C++ 11 highlight support
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-" Enabling JSX highlight
-let g:jsx_ext_required = 0
-
 
 " Setting font among systems
 if has("gui_running")
@@ -126,55 +92,29 @@ if has("gui_running")
     endif
 endif
 
-" Neocomplete stuff
-let g:neocomplete#enable_at_startup = 1
-
-" Fixing compatibility issues with multiple cursors
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-    if exists(':NeoCompleteLock')==2
-        exe 'NeoCompleteLock'
-    endif
-endfunction
-
-" Called once only when the multiple selection is canceled (default
-function! Multiple_cursors_after()
-    if exists(':NeoCompleteUnlock')==2
-        exe 'NeoCompleteUnlock'
-    endif
-endfunction
-
-" RSpec.vim mappings
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>s :call RunNearestSpec()<CR>
-map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>
-
-let g:rspec_command = "! docker exec -it magnetis_web_1 bundle exec rspec --color {spec}"
-
 set backspace=indent,eol,start
 
 " Vim airline
 set laststatus=2
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled     = 1
-let g:airline#extensions#syntastic#enabled  = 1
+let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
-set guifont=Inconsolata\ 11
 
-" Habit breaking
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
-
-" Change cursor according to mode when using Konsole
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
-" PEP8 checking for Python files
-autocmd BufWritePost *.py call Flake8()
+" airline symbols
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
 
 " Transparent background
 hi Normal ctermbg=none
@@ -184,33 +124,49 @@ highlight NonText ctermbg=none
 autocmd FileType python nnoremap <buffer> <leader>t :exec '!py.test -v -s' shellescape(@%, 1)<cr>
 autocmd FileType python nnoremap <buffer> <leader>g :exec '!py.test -v -s --pdb' shellescape(@%, 1)<cr>
 
+set colorcolumn=100
+
 set nofoldenable
+set hidden
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 
 " telling NerdTree to ignore some files
 let NERDTreeIgnore=['\.o$', '\~$', '\.pyc$', '__pycache__', '^tmp', '^aux']
-
-" I don't want pymode to auto complete my stuff.
-let g:pymode_rope_complete_on_dot = 0
+let NERDTreeShowHidden=1
 
 " Loading local vimrc files (thanks, @philss)
 if filereadable(glob("./.vimrc.local"))
     source ./.vimrc.local
 endif
 
-let g:airline_theme='base16_atelierforest'
-set background=light   " Setting light mode
-
-
-autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
-
-if executable('ag')
-    " Use ag (the silver searcher)
-    " https://github.com/ggreer/the_silver_searcher
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts =
-                \ '-i --line-numbers --nocolor ' .
-                \ '--nogroup --hidden --ignore ' .
-                \ '''.hg'' --ignore ''.svn'' --ignore' .
-                \ ' ''.git'' --ignore ''.bzr'''
-    let g:unite_source_grep_recursive_opt = ''
+" Loading virtualenv if it exists
+if filereadable(glob("./.venv/bin/activate"))
+    let old_path = $PATH
+    let $PATH='$PWD/.venv/bin:' . old_path
 endif
+
+setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sw=2 sts=0 expandtab
+autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType lua setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType python setlocal ts=4 sts=4 sw=4 expandtab
+
+
+autocmd BufWritePost *.py call flake8#Flake8()
+
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+
+let base16colorspace=256
+" set termguicolors
+colorscheme base16-ashes
+
+nmap <F8> :TagbarToggle<CR>
+
+" disables opaque background
+hi Normal ctermbg=none
+hi NonText ctermbg=none
